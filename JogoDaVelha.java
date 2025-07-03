@@ -44,7 +44,6 @@ public class JogoDaVelha{
                 //Exibir Tabuleiro
                 for(int y=0; y<3; y++){
                     for(int j = 0; j<3; j++){
-                        tabuleiro[i][j] = ' ';
                         System.out.print(tabuleiro[y][j]+" | ");
                     }
                     System.out.println("");
@@ -53,29 +52,35 @@ public class JogoDaVelha{
                 //Verifica as linhas
                 for (int z = 0; z < 3; z++) {
                     if (tabuleiro[z][0] != ' ' && tabuleiro[z][0] == tabuleiro[z][1] && tabuleiro[z][1] == tabuleiro[z][2]) {
-                        System.out.println("Jogador " + tabuleiro[z][0] + " venceu na linha " + z);
+                        System.out.println("Jogador '" + tabuleiro[z][0] + "' venceu na linha " + (z + 1));
                         venceu = true;
+                        break;
                     }
                 }
                 //Verifica as colunas
                 for (int l = 0; l < 3; l++) {
                     if (tabuleiro[0][l] != ' ' && tabuleiro[0][l] == tabuleiro[1][l] && tabuleiro[1][l] == tabuleiro[2][l]) {
-                        System.out.println("Jogador " + tabuleiro[0][l] + " venceu na coluna " + l);
+                        System.out.println("Jogador '" + tabuleiro[0][l] + "' venceu na coluna " + (l + 1));
                         venceu = true;
+                        break;
                     }
                 }
                 //Verifica diagonal principal
                 if (tabuleiro[0][0] != ' ' && tabuleiro[0][0] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][2]) {
                     System.out.println("Jogador " + tabuleiro[0][0] + " venceu na diagonal principal");
                     venceu = true;
+                    break;
                 }
                 //Verifica diagonal secundária
                 if (tabuleiro[0][2] != ' ' && tabuleiro[0][2] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][0]) {
                     System.out.println("Jogador " + tabuleiro[0][2] + " venceu na diagonal 2");
                     venceu = true;
+                    break;
                 }
                 
-                break;
+                if(venceu){
+                    break;
+                }
             }
 
             if(!venceu){
@@ -88,8 +93,13 @@ public class JogoDaVelha{
             if(!resposta.equalsIgnoreCase("s")){
                 continuar = false;
                 System.out.println("Jogo encerrado!");
+            } else {
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                    tabuleiro[i][j] = ' ';
+                    }
+                }
             }
         }
-
     }
 }
